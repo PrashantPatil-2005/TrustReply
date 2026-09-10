@@ -1,0 +1,43 @@
+brand: AmazonHelp
+brand_display_name: Amazon Help
+
+# Intent taxonomy derived from AmazonHelp conversation analysis
+intents:
+  - order_status
+  - delivery_issue
+  - refund_return
+  - account_access
+  - payment_billing
+  - product_quality
+  - subscription_prime
+  - technical_app
+  - general_inquiry
+  - praise_thanks
+
+# Escalation rules (applied after intent classification)
+escalation:
+  auto_handle_intents:
+    - order_status
+    - general_inquiry
+    - praise_thanks
+  always_escalate_keywords:
+    - lawyer
+    - sue
+    - legal
+    - fraud
+    - stolen
+    - police
+    - chargeback
+    - discrimination
+    - harassment
+  sentiment_escalate_threshold: -0.6
+
+data:
+  hf_dataset: gorkemsevinc/Customer_Support_on_Twitter
+  max_train_samples: 50000
+  retrieval_top_k: 5
+
+evaluation:
+  golden_set_path: data/golden_eval.jsonl
+  judge_sample_size: 50
+  random_seed: 42

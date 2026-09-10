@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+data/raw/twcs.csv
+data/processed/
+data/eval_results/
+*.egg-info/
+.venv/
+venv/
