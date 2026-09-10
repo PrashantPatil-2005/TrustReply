@@ -30,4 +30,19 @@ Non-obvious decisions made during this project and why.
 
 14. **50-sample judge subset** — Full 200 would cost ~$2–5 in API calls and slow the 15-min reproduction target. 50 is enough for agreement statistics.
 
-15. **Cap retrieval index at 50k pairs** — Full AmazonHelp corpus is ~150k+ pairs. 50k gives diverse coverage while keeping retrieval under 1 second per query on CPU.
+15. **Cap retrieval index at 15k pairs** — Balances recall vs <15 min reproduction; sparse TF-IDF matrix for memory efficiency.
+
+---
+
+## ThreadVault v2 Decisions
+
+16. **Evidence gating as primary innovation** — Auto-handle blocked when retrieval score < 0.30; measurable abstention.
+17. **Resolution Pattern Objects (RPOs)** — Extract actions/constraints from replies instead of copying raw text.
+18. **Hybrid BM25 + TF-IDF retrieval** — Beats fuzzy match on paraphrases without GPU embedding models.
+19. **Calibrated escalation model (13 features)** — Replaces hand-tuned rules; trained on golden_train only.
+20. **40-example holdout test set** — Headline numbers on data never used for threshold tuning.
+21. **Strict Trust Score (STS)** — End-to-end metric combining intent + escalation + verification; honest at ~58%.
+22. **Sparse TF-IDF index** — scipy.sparse.save_npz instead of dense matrix; 10x faster index build.
+23. **Streamlit control center** — Full trace visualization for judges; highest demo impact per hour.
+24. **Verification before escalation decision** — Groundedness feeds escalation features, not just post-hoc check.
+25. **TF-IDF + LR intent classifier** — Separates from simple keyword baseline; trained on 15k weak-labeled pairs.

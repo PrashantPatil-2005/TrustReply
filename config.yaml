@@ -39,5 +39,16 @@ data:
 
 evaluation:
   golden_set_path: data/golden_eval.jsonl
+  golden_train_path: data/golden_train.jsonl
+  golden_test_path: data/golden_test.jsonl
   judge_sample_size: 50
   random_seed: 42
+
+retrieval:
+  bm25_weight: 0.45
+  tfidf_weight: 0.55
+  min_evidence_score: 0.30
+
+evidence_gate:
+  min_consistency: 0.40
+  min_groundedness: 0.60
